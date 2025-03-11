@@ -18,6 +18,9 @@ class SearchView extends StatelessWidget {
         child: Center(
             child: TextField(
           decoration: InputDecoration(
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+              labelText: 'Search',
               suffixIcon: Icon(Icons.search),
               hintText: 'Enter City Name',
               border: OutlineInputBorder()),
