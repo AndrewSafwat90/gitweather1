@@ -3,11 +3,13 @@ import 'package:gitweather1/models/weathetmodel.dart';
 
 class WeatherService {
   final Dio dio;
-
+  final String basUrl = 'http://api.weatherapi.com/v1';
+  final String apiKey = '6058a2c4090d42d0b45135146231605';
   WeatherService(this.dio);
+
   Future<WeatherModel> getCurrentWeather({required String cityName}) async {
-    Response response = await dio.get(
-        'http://api.weatherapi.com/v1/forecast.json?key=6058a2c4090d42d0b45135146231605&q=$cityName&days=1');
+    Response response =
+        await dio.get('$basUrl/forecast.json?key=$apiKey&q=$cityName&days=1');
 
     WeatherModel weatherModel = WeatherModel.fromJson(response.data);
 
