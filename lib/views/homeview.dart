@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gitweather1/views/searchview.dart';
+import 'package:gitweather1/widgets/noweatherbody.dart';
 import 'package:gitweather1/widgets/weatherinfobody.dart';
 
 class HomeView extends StatelessWidget {
@@ -32,7 +33,7 @@ class HomeView extends StatelessWidget {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: WeatherInfoBody(),
+      body: weatherModel == null ? NoWeatherBody() : WeatherInfoBody(),
     );
   }
 }
