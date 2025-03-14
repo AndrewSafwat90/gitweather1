@@ -33,7 +33,7 @@ class HomeView extends StatelessWidget {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: weatherModel == null ? NoWeatherBody() : WeatherInfoBody(),
+      body: NoWeatherBody(),
     );
   }
 }
