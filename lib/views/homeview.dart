@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gitweather1/cubits/get-weather-cubit/get-weather-cubit.dart';
+import 'package:gitweather1/cubits/get-weather-cubit/git-weather-states.dart';
 import 'package:gitweather1/views/searchview.dart';
 import 'package:gitweather1/widgets/noweatherbody.dart';
 import 'package:gitweather1/widgets/weatherinfobody.dart';
@@ -33,7 +36,17 @@ class HomeView extends StatelessWidget {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: NoWeatherBody(),
+      body: BlocBuilder<GetWeatherCubit, WeatherState>(
+        builder: (context, state) {
+          if (state is NoWeatherState) {
+            return NoWeatherBody();
+          } else if (state is WeatherLoadedState) {
+            return WeatherInfoBody();
+          } else {
+            return Center(child: Text('There was No data 😥'));
+          }
+        },
+      ),
     );
   }
 }
