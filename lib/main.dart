@@ -14,29 +14,20 @@ class GitWeather1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetWeatherCubit(),
-      child: CustomMaterialApp(),
-    );
-  }
-}
-
-class CustomMaterialApp extends StatelessWidget {
-  const CustomMaterialApp({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: false,
-        primarySwatch: getThemeColor(BlocProvider.of<GetWeatherCubit>(context)
-            .weatherModel
-            ?.weatherCondition),
-      ),
-      home: HomeView(),
-    );
+        create: (context) => GetWeatherCubit(),
+        child: Builder(
+          builder: (context) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              useMaterial3: false,
+              primarySwatch: getThemeColor(
+                  BlocProvider.of<GetWeatherCubit>(context)
+                      .weatherModel
+                      ?.weatherCondition),
+            ),
+            home: HomeView(),
+          ),
+        ));
   }
 }
 
