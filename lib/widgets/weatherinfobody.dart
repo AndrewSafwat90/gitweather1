@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gitweather1/cubits/get-weather-cubit/get-weather-cubit.dart';
 import 'package:gitweather1/cubits/get-weather-cubit/git-weather-states.dart';
-import 'package:gitweather1/models/weathetmodel.dart';
+import 'package:intl/intl.dart';
 
 class WeatherInfoBody extends StatelessWidget {
   const WeatherInfoBody({super.key});
@@ -25,22 +25,25 @@ class WeatherInfoBody extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
                   Text(
-                    weatherModel.date,
+                    'Update at ${weatherModel.date.hour} : ${weatherModel.date.minute}',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Update at >>  ${DateFormat('d/MM/yyyy').format(weatherModel.date)}',
                     style: TextStyle(fontSize: 22),
                   ),
                   SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Image(
-                          image:
-                              NetworkImage('https://${weatherModel.image!}')),
-                      Text(weatherModel.avgTemp.toString(),
+                      Image.network("https:${weatherModel.image}"),
+                      Text(weatherModel.avgTemp.round().toString(),
                           style: TextStyle(fontSize: 30)),
                       Column(
                         children: [
-                          Text('MaxTemp: ${weatherModel.maxTemp}'),
-                          Text('MinTemp: ${weatherModel.minTemp}'),
+                          Text('MaxTemp: ${weatherModel.maxTemp.round()}'),
+                          Text('MinTemp: ${weatherModel.minTemp.round()}'),
                         ],
                       )
                     ],
@@ -62,3 +65,8 @@ class WeatherInfoBody extends StatelessWidget {
     );
   }
 }
+
+
+// DateTime stringToDateTime (String value) {
+//   return DateTime.parse(value);
+// }

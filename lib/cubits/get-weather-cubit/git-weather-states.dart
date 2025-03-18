@@ -1,5 +1,3 @@
-import 'package:gitweather1/models/weathetmodel.dart';
-
 class WeatherState {}
 
 class NoWeatherState extends WeatherState {}
