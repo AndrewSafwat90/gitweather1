@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gitweather1/cubits/get-weather-cubit/get-weather-cubit.dart';
 import 'package:gitweather1/cubits/get-weather-cubit/git-weather-states.dart';
+import 'package:gitweather1/models/weathetmodel.dart';
 import 'package:intl/intl.dart';
 
 class WeatherInfoBody extends StatelessWidget {
@@ -12,8 +13,8 @@ class WeatherInfoBody extends StatelessWidget {
     return BlocBuilder<GetWeatherCubit, WeatherState>(
       builder: (context, state) {
         if (state is WeatherLoadedState) {
-          var weatherModel =
-              BlocProvider.of<GetWeatherCubit>(context).weatherModel;
+          WeatherModel weatherModel =
+              BlocProvider.of<GetWeatherCubit>(context).weatherModel!;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Center(

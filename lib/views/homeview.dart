@@ -6,13 +6,22 @@ import 'package:gitweather1/views/searchview.dart';
 import 'package:gitweather1/widgets/noweatherbody.dart';
 import 'package:gitweather1/widgets/weatherinfobody.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          'Weather App',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -30,11 +39,8 @@ class HomeView extends StatelessWidget {
                 size: 30,
               ))
         ],
-        title: Text(
-          'Weather App',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.blue,
+
+        //backgroundColor: Colors.blue,
       ),
       body: BlocBuilder<GetWeatherCubit, WeatherState>(
         builder: (context, state) {
