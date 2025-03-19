@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gitweather1/cubits/get-weather-cubit/get-weather-cubit.dart';
+import 'package:gitweather1/cubits/get-weather-cubit/git-weather-states.dart';
 import 'package:gitweather1/views/homeview.dart';
 
 void main() {
@@ -16,16 +17,20 @@ class GitWeather1 extends StatelessWidget {
     return BlocProvider(
         create: (context) => GetWeatherCubit(),
         child: Builder(
-          builder: (context) => MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              useMaterial3: false,
-              primarySwatch: getThemeColor(
-                  BlocProvider.of<GetWeatherCubit>(context)
-                      .weatherModel
-                      ?.weatherCondition),
-            ),
-            home: HomeView(),
+          builder: (context) => BlocBuilder<GetWeatherCubit, WeatherState>(
+            builder: (context, state) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                  useMaterial3: false,
+                  primarySwatch: getThemeColor(
+                      BlocProvider.of<GetWeatherCubit>(context)
+                          .weatherModel
+                          ?.weatherCondition),
+                ),
+                home: HomeView(),
+              );
+            },
           ),
         ));
   }
